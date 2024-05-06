@@ -214,7 +214,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b3e4c1b73524864d9bb15b3274d1527, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controllers: []
+  controllers:
+  - {fileID: 11400000, guid: 250d33eb5f56d9b4daa6d6d180d8361c, type: 2}
+  - {fileID: 11400000, guid: 15b37a1e27070d14aaa2abd7f21e97fd, type: 2}
 --- !u!4 &348171264
 Transform:
   m_ObjectHideFlags: 0
@@ -517,7 +519,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnCooldown: 3
-  prefab: {fileID: 4926865590663418049, guid: 4a81b6780f1133d4090da1d1efbd2d43, type: 3}
+  enemyType: 0
 --- !u!4 &665521887
 Transform:
   m_ObjectHideFlags: 0
@@ -752,7 +754,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnCooldown: 6
-  prefab: {fileID: 8022363772151829321, guid: 81abd3e2c9a505443a2c76a4c7b7db10, type: 3}
+  enemyType: 0
 --- !u!4 &1744249244
 Transform:
   m_ObjectHideFlags: 0
