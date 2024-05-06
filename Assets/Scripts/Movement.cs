@@ -26,11 +26,5 @@ public class Movement : MonoBehaviour
     private void Move()
     {
         _transform.Translate(0f, speed * (int)direction * Time.deltaTime, 0f);
-
-        if (direction == MovementDirection.Up && _transform.position.y >= ScreenSize.TopRight.y + 1f)
-            Destroy(gameObject);
-
-        else if (direction == MovementDirection.Down && _transform.position.y <= ScreenSize.BottomLeft.y - 1f)
-            Destroy(gameObject);
     }
 }

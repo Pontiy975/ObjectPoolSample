@@ -1,17 +1,23 @@
+using PoolingSystem;
 using UnityEngine;
 
 namespace Enemies
 {
     public class Spawner : MonoBehaviour
     {
+        private enum EnemyType { Enemy, Asteroid }
+
         [SerializeField] private float spawnCooldown;
-        [SerializeField] private GameObject prefab;
+        [SerializeField] private EnemyType enemyType;
+
+        private PoolManager _poolManager;
 
         private float _timer;
 
         private void Start()
         {
             _timer = spawnCooldown;
+            _poolManager = PoolManager.Instance;
         }
 
         private void Update()
@@ -32,7 +38,14 @@ namespace Enemies
 
         private void Spawn()
         {
-            Instantiate(prefab, GetPoint(), Quaternion.identity);
+            Transform enemyTransform = null;
+
+            if (enemyType == EnemyType.Enemy)
+                enemyTransform = _poolManager.GetFromPool<Enemy>(PoolType.Enemies).transform;
+            else if (enemyType == EnemyType.Asteroid)
+                enemyTransform = _poolManager.GetFromPool<Asteroid>(PoolType.Enemies).transform;
+
+            enemyTransform.position = GetPoint();
         }
 
         private Vector2 GetPoint()

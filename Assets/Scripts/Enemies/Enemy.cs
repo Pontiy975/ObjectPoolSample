@@ -1,3 +1,4 @@
+using PoolingSystem;
 using Projectiles;
 using System.Collections;
 using System.Collections.Generic;
@@ -5,7 +6,7 @@ using UnityEngine;
 
 namespace Enemies
 {
-    public class Enemy : MonoBehaviour
+    public class Enemy : PoolableObject
     {
         [SerializeField] private Animator explosion;
         [SerializeField] private GameObject body;
@@ -13,6 +14,7 @@ namespace Enemies
         [SerializeField] private EnemyProjectile projectilePrefab;
         [SerializeField] private List<string> collisionTags;
 
+        private PoolManager _poolManager;
         private Transform _transform;
         private bool _isDead;
 
@@ -22,6 +24,7 @@ namespace Enemies
 
         private void Start()
         {
+            _poolManager = PoolManager.Instance;
             _transform = transform;
             _attackTimer = attackCooldown;
         }
@@ -29,6 +32,9 @@ namespace Enemies
         private void Update()
         {
             UpdateAttackTimer();
+
+            if (_transform.position.y <= ScreenSize.BottomLeft.y - 1f)
+                ReturnToPool();
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
@@ -39,7 +45,8 @@ namespace Enemies
 
         private void Attack()
         {
-            Instantiate(projectilePrefab, _transform.position, Quaternion.identity);
+            EnemyProjectile projectile = _poolManager.GetFromPool<EnemyProjectile>(PoolType.Projectiles);
+            projectile.transform.position = _transform.position;
         }
 
         private void Death()
@@ -58,11 +65,13 @@ namespace Enemies
             yield return new WaitForSeconds(.25f);
             body.gameObject.SetActive(false);
             yield return new WaitForSeconds(.75f);
-            Destroy(gameObject);
+            ReturnToPool();
         }
 
         private void UpdateAttackTimer()
         {
+            if (_isDead) return;
+
             _attackTimer -= Time.deltaTime;
 
             if (_attackTimer <= 0f)
@@ -70,6 +79,11 @@ namespace Enemies
                 _attackTimer = attackCooldown;
                 Attack();
             }
+        }
+
+        private void ReturnToPool()
+        {
+            _poolManager.ReturnToPool(PoolType.Enemies, this);
         }
     }
 }
