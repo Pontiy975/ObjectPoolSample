@@ -47,7 +47,6 @@ namespace PoolingSystem
         public void Clear()
         {
             _pool?.Clear();
-            _pool = null;
         }
 
         public bool CheckItemType<S>()
