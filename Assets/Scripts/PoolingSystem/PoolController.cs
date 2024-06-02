@@ -44,9 +44,7 @@ namespace PoolingSystem
         public void ReturnToPool<T>(T item) where T : PoolableObject
         {
             Pool<PoolableObject> pool = GetPool<T>();
-            if (pool == null) return;
-
-            pool.ReturnItem(item);
+            pool?.ReturnItem(item);
         }
 
         private Pool<PoolableObject> GetPool<T>()

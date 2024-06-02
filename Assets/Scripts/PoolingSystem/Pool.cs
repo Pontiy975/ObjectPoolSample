@@ -40,7 +40,7 @@ namespace PoolingSystem
 
         public void ReturnItem(T item)
         {
-            _pool.Push(item);
+            _pool?.Push(item);
             item.OnDespawn();
         }
 
