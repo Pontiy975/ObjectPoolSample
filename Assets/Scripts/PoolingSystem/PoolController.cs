@@ -11,7 +11,7 @@ namespace PoolingSystem
     [CreateAssetMenu(fileName = "PoolController", menuName = "ScriptableObjects/PoolController")]
     public class PoolController : ScriptableObject
     {
-        [field: SerializeField] public PoolType Type { get; private set; }
+        //[field: SerializeField] public PoolType Type { get; private set; }
         [SerializeField] private Pool<PoolableObject>[] pools;
 
         public void Init()

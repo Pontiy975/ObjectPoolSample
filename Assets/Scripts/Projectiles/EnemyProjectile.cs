@@ -5,13 +5,14 @@ namespace Projectiles
 {
     public class EnemyProjectile : PoolableObject
     {
+        [SerializeField] private PoolController projectilePools;
+
         private Transform _transform;
-        private PoolManager _poolManager;
 
         private void Start()
         {
             _transform = transform;
-            _poolManager = PoolManager.Instance;
+            //_poolManager = PoolManager.Instance;
         }
 
         private void Update()
@@ -28,7 +29,7 @@ namespace Projectiles
 
         private void ReturnToPool()
         {
-            _poolManager.ReturnToPool(PoolType.Projectiles, this);
+            projectilePools.ReturnToPool(this);
         }
     }
 }

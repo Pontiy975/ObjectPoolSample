@@ -8,13 +8,14 @@ namespace Enemies
 {
     public class Enemy : PoolableObject
     {
+        [SerializeField] private PoolController projectilePools;
+        [SerializeField] private PoolController enemyPools;
         [SerializeField] private Animator explosion;
         [SerializeField] private GameObject body;
         [SerializeField] private float attackCooldown;
         [SerializeField] private EnemyProjectile projectilePrefab;
         [SerializeField] private List<string> collisionTags;
 
-        private PoolManager _poolManager;
         private Transform _transform;
         private bool _isDead;
 
@@ -24,7 +25,7 @@ namespace Enemies
 
         private void Start()
         {
-            _poolManager = PoolManager.Instance;
+            //_poolManager = PoolManager.Instance;
             _transform = transform;
             _attackTimer = attackCooldown;
         }
@@ -45,7 +46,7 @@ namespace Enemies
 
         private void Attack()
         {
-            EnemyProjectile projectile = _poolManager.GetFromPool<EnemyProjectile>(PoolType.Projectiles);
+            EnemyProjectile projectile = projectilePools.GetFromPool<EnemyProjectile>();
             projectile.transform.position = _transform.position;
         }
 
@@ -83,7 +84,7 @@ namespace Enemies
 
         private void ReturnToPool()
         {
-            _poolManager.ReturnToPool(PoolType.Enemies, this);
+            enemyPools.ReturnToPool(this);
         }
     }
 }

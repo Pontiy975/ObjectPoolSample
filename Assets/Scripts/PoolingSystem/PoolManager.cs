@@ -4,16 +4,16 @@ namespace PoolingSystem
 {
     public class PoolManager : MonoBehaviour
     {
-        #region Singleton
-        private static PoolManager _instance;
-        public static PoolManager Instance => _instance;
+        //#region Singleton
+        //private static PoolManager _instance;
+        //public static PoolManager Instance => _instance;
 
-        private void Awake()
-        {
-            if (_instance == null) _instance = this;
-            else Destroy(gameObject);
-        }
-        #endregion
+        //private void Awake()
+        //{
+        //    if (_instance == null) _instance = this;
+        //    else Destroy(gameObject);
+        //}
+        //#endregion
 
         [SerializeField] private PoolController[] controllers;
 
@@ -33,27 +33,27 @@ namespace PoolingSystem
             }
         }
 
-        public T GetFromPool<T>(PoolType type) where T : PoolableObject
-        {
-            for (int i = 0; i < controllers.Length; i++)
-            {
-                if (controllers[i].Type == type)
-                    return controllers[i].GetFromPool<T>();
-            }
+        //public T GetFromPool<T>(PoolType type) where T : PoolableObject
+        //{
+        //    for (int i = 0; i < controllers.Length; i++)
+        //    {
+        //        if (controllers[i].Type == type)
+        //            return controllers[i].GetFromPool<T>();
+        //    }
 
-            return null;
-        }
+        //    return null;
+        //}
 
-        public void ReturnToPool<T>(PoolType type, T item) where T : PoolableObject
-        {
-            for (int i = 0; i < controllers.Length; i++)
-            {
-                if (controllers[i].Type == type)
-                {
-                    controllers[i].ReturnToPool(item);
-                    break;
-                }
-            }
-        }
+        //public void ReturnToPool<T>(PoolType type, T item) where T : PoolableObject
+        //{
+        //    for (int i = 0; i < controllers.Length; i++)
+        //    {
+        //        if (controllers[i].Type == type)
+        //        {
+        //            controllers[i].ReturnToPool(item);
+        //            break;
+        //        }
+        //    }
+        //}
     }
 }

@@ -8,11 +8,11 @@ namespace Player
 {
     public class Player : MonoBehaviour
     {
+        [SerializeField] private PoolController projectilePools;
         [SerializeField] private Animator explosion;
         [SerializeField] private GameObject body;
         [SerializeField] private List<string> collisionTags;
 
-        private PoolManager _poolManager;
         private Transform _transform;
         private Camera _camera;
         private bool _isDead;
@@ -24,7 +24,7 @@ namespace Player
 
         private void Start()
         {
-            _poolManager = PoolManager.Instance;
+            //_poolManager = PoolManager.Instance;
             _transform = transform;
             _camera = Camera.main;
 
@@ -57,7 +57,7 @@ namespace Player
         {
             if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space))
             {
-                PlayerProjectile projectile = _poolManager.GetFromPool<PlayerProjectile>(PoolType.Projectiles);
+                PlayerProjectile projectile = projectilePools.GetFromPool<PlayerProjectile>();
                 projectile.transform.position = _transform.position;
             }
         }

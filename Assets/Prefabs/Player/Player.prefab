@@ -132,7 +132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d0f8582f6a87e848932e846450dd8c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 702538713996788610, guid: 5dc78ac334f45aa468d51a664e2304a3, type: 3}
+  projectilePools: {fileID: 11400000, guid: 15b37a1e27070d14aaa2abd7f21e97fd, type: 2}
   explosion: {fileID: 622758476220908651}
   body: {fileID: 7839373387544865985}
   collisionTags:

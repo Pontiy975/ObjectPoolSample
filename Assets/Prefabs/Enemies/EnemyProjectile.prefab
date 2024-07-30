@@ -63,6 +63,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc418d09a4c1279458777a91d091eb81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  projectilePools: {fileID: 11400000, guid: 15b37a1e27070d14aaa2abd7f21e97fd, type: 2}
 --- !u!114 &9134362357070799631
 MonoBehaviour:
   m_ObjectHideFlags: 0

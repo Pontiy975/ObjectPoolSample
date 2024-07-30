@@ -9,15 +9,14 @@ namespace Enemies
 
         [SerializeField] private float spawnCooldown;
         [SerializeField] private EnemyType enemyType;
-
-        private PoolManager _poolManager;
+        [SerializeField] private PoolController enemyPools;
 
         private float _timer;
 
         private void Start()
         {
             _timer = spawnCooldown;
-            _poolManager = PoolManager.Instance;
+            //_poolManager = PoolManager.Instance;
         }
 
         private void Update()
@@ -41,9 +40,9 @@ namespace Enemies
             Transform enemyTransform = null;
 
             if (enemyType == EnemyType.Enemy)
-                enemyTransform = _poolManager.GetFromPool<Enemy>(PoolType.Enemies).transform;
+                enemyTransform = enemyPools.GetFromPool<Enemy>().transform;
             else if (enemyType == EnemyType.Asteroid)
-                enemyTransform = _poolManager.GetFromPool<Asteroid>(PoolType.Enemies).transform;
+                enemyTransform = enemyPools.GetFromPool<Asteroid>().transform;
 
             enemyTransform.position = GetPoint();
         }
