@@ -438,6 +438,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnCooldown: 3
   enemyType: 0
+  enemyPools: {fileID: 11400000, guid: 250d33eb5f56d9b4daa6d6d180d8361c, type: 2}
 --- !u!4 &665521887
 Transform:
   m_ObjectHideFlags: 0
@@ -706,6 +707,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnCooldown: 6
   enemyType: 0
+  enemyPools: {fileID: 11400000, guid: 250d33eb5f56d9b4daa6d6d180d8361c, type: 2}
 --- !u!4 &1744249244
 Transform:
   m_ObjectHideFlags: 0

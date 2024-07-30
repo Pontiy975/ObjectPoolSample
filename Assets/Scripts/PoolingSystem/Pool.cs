@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace PoolingSystem
@@ -46,6 +47,11 @@ namespace PoolingSystem
 
         public void Clear()
         {
+            for (int i = 0; i < _pool.Count; i++)
+            {
+                Object.Destroy(_pool.Pop().gameObject);
+            }
+
             _pool?.Clear();
             _pool = null;
         }
